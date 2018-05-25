@@ -10,7 +10,7 @@ import { DefaultEditor } from './default-editor';
                    [dataService]="cell.getColumn().getConfig().completer.dataService"
                    [minSearchLength]="cell.getColumn().getConfig().completer.minSearchLength || 0"
                    [pause]="cell.getColumn().getConfig().completer.pause || 0"
-                   [placeholder]="cell.getColumn().getConfig().completer.placeholder || 'Start typing...'"
+                   [placeholder]="cell.getColumn().getConfig().completer.placeholder || 'Search...'"
                    (selected)="onEditedCompleter($event)">
     </ng2-completer>
     `,
@@ -31,8 +31,8 @@ export class CompleterEditorComponent extends DefaultEditor implements OnInit {
     }
   }
 
-  onEditedCompleter(event: { title: '' }): boolean {
-    this.cell.newValue = event.title;
+  onEditedCompleter(event: { title: '' , originalObject: {id: ''}}): boolean {
+    this.cell.newValue = event.originalObject.id;
     return false;
   }
 }
